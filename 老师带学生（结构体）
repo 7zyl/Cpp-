@@ -1,0 +1,53 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct Student {						//学生
+	string StudentName;
+	int score;
+};
+
+struct Teacher {						//老师
+	string TeacherName;
+	struct Student studentArray[5];		//每个老师带5个学生
+};
+
+void AllocateSpace(struct Teacher teacherArray[], int len)						//分配空间，输入数据
+{
+	string NameSeed = "ABCDE";
+	for (int i = 0; i < len; i++)
+	{
+		teacherArray[i].TeacherName = "Teacher_";
+		teacherArray[i].TeacherName += NameSeed[i];								//通过字符串加减输入老师姓名
+		for (int j = 0; j < 5; j++)
+		{
+			teacherArray[i].studentArray[j].StudentName = "Student_";
+			teacherArray[i].studentArray[j].StudentName += NameSeed[j];
+			int random = rand() % 61 + 40;													//分数使用随机数
+			teacherArray[i].studentArray[j].score = random;
+		}
+	}
+}
+
+void PrintInfo(struct Teacher teacherArray[], int len)								//打印数据
+{
+	for (int i = 0; i < len; i++)
+	{
+		cout << "老师：" << teacherArray[i].TeacherName << endl;
+		for (int j = 0; j < 5; j++)
+		{
+			cout << "\t学生:" << teacherArray[i].studentArray[j].StudentName << " " << "成绩:" << teacherArray[i].studentArray[j].score << endl;
+		}
+	}
+}
+
+int main()
+{
+	srand((unsigned int)time(NULL));															//随机数种子
+	struct Teacher teacherArray[3];																//存放老师信息的数组
+	int len = sizeof(teacherArray) / sizeof(teacherArray[0]);
+	AllocateSpace(teacherArray, len);
+	PrintInfo(teacherArray, len);
+	system("pause");
+	return 0;
+}
