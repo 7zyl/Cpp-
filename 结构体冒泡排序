@@ -1,0 +1,43 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct Hero {
+	string name;
+	int age;
+	string sex;
+};
+
+void bubble_sort(struct Hero HeroArray[], int sz)
+{
+	for (int i = 0; i < sz - 1; i++)
+	{
+		for (int j = 0; j < sz - 1 - i; j++)
+		{
+			if (HeroArray[j].age > HeroArray[j + 1].age)
+			{
+				struct Hero temp = HeroArray[j];
+				HeroArray[j] = HeroArray[j + 1];
+				HeroArray[j + 1] = temp;
+			}
+		}
+	}
+}
+
+void print(struct Hero HeroArray[], int sz)
+{
+	for (int i = 0; i < sz; i++)
+	{
+		cout << "英雄：" << HeroArray[i].name << "年龄：" << HeroArray[i].age << "性别：" << HeroArray[i].sex << endl;
+	}
+}
+
+int main()
+{
+	struct Hero HeroArray[5] = { {"刘备",23,"男"},{"关羽",22,"男"} ,{"张飞",20,"男"} ,{"赵云",21,"男"} ,{"貂蝉",19,"女"} };
+	int sz = sizeof(HeroArray) / sizeof(HeroArray[0]);
+	bubble_sort(HeroArray, sz);
+	print(HeroArray, sz);
+	system("pause");
+	return 0;
+}
