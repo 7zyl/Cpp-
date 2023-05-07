@@ -1,0 +1,43 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class Student
+{
+public:
+	//属性
+	string m_name;
+	int m_num;
+	//行为
+	void show()
+	{
+		cout << m_name << " " << m_num << endl;
+	}
+	//通过行为给属性赋值
+	void getname(string name)
+	{
+		m_name = name;
+	}
+	void getnum(int num)
+	{
+		m_num = num;
+	}
+};
+
+int main()
+{
+	Student s1;
+	s1.getname("zhangsan");
+	s1.getnum(10);
+	s1.show();
+
+	Student s2;
+	s2.m_name = "lisi";
+	s2.m_num = 20;
+
+	s2.show();
+
+	system("pause");
+	return 0;
+}
