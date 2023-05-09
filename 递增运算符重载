@@ -1,0 +1,62 @@
+#include<iostream>
+using namespace std;
+#include<string>
+
+//自定义整型
+class Myinteger
+{
+	//全局函数友元
+	friend ostream& operator<<(ostream& cout, Myinteger myint);
+public:
+	Myinteger()
+	{
+		m_num = 0;						//初始化为0
+	}
+
+	//重载前置++运算符
+	Myinteger& operator++()
+	{
+		m_num++;						//先进行++运算
+		return *this;						//把自身返回
+	}
+
+	//重载后置++运算符
+	Myinteger operator++(int)		//	int代表占位参数，可以区分前置和后置
+		//后置递增返回值，不返回引用。返回的是temp是局部的对象，返回值
+	{
+		//先记录当时结果，再递增，最后将记录结果返回
+		Myinteger temp = *this;
+		m_num++;
+		return temp;
+	}
+private:
+	int m_num;
+};
+
+//左移运算符重载，即输出
+ostream& operator<<(ostream& cout, Myinteger myint)		//Myinteger不使用引用，是后置的原因
+{
+	cout << myint.m_num << endl;
+	return cout;
+}
+
+void test01()
+{
+	Myinteger myint;
+	cout << ++myint << endl;
+	cout << myint << endl;
+}
+
+void test02()
+{
+	Myinteger myint;
+	cout << myint++ << endl;
+	cout << myint << endl;
+}
+int main()
+{
+	test01();
+	test02();
+	system("pause");
+	return 0;
+}
