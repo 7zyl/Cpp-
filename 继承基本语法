@@ -1,0 +1,76 @@
+#include<iostream>
+using namespace std;
+#include<string>
+
+class basepage
+{
+public:
+	void head()
+	{
+		cout << "头部" << endl;
+	}
+	void foot()
+	{
+		cout << "脚部" << endl;
+	}
+	void left()
+	{
+		cout << "左侧" << endl;
+	}
+};
+
+//继承 class A:public B
+//A称为子类（派生类），B称为父类（基类）,public为继承方式
+class Java :public basepage
+{
+public:
+	void java()
+	{
+		cout << "java内容" << endl;
+	}
+};
+
+class Python :public basepage
+{
+public:
+	void python()
+	{
+		cout << "python内容" << endl;
+	}
+};
+
+class Cpp :public basepage
+{
+public:
+	void cpp()
+	{
+		cout << "cpp内容" << endl;
+	}
+};
+
+void test01()
+{
+	Java ja;
+	ja.head();
+	ja.foot();
+	ja.left();
+	ja.java();
+	cout << "---------------" << endl;
+	Python py;
+	py.head();
+	py.foot();
+	py.left();
+	py.python();
+	cout << "---------------" << endl;
+	Cpp cpp;
+	cpp.head();
+	cpp.foot();
+	cpp.left();
+	cpp.cpp();
+}
+int main()
+{
+	test01();
+	system("pause");
+	return 0;
+}
