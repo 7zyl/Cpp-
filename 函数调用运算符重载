@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+#include<string>
+
+class myprint
+{
+public:
+	//函数调用运算符（）重载
+	void operator()(string name)
+	{
+		cout << name << endl;
+	}
+};
+
+void test01()
+{
+	//重载的（）操作符，也称为仿函数
+	myprint print;
+	print("hello world");			//	非常像函数调用，又叫仿函数
+}
+
+class myadd
+{
+public:
+	int operator()(int a, int b)
+	{
+		return a + b;
+	}
+};
+
+void test02()
+{
+	myadd add;
+	int ret = add(10, 10);
+	cout << ret << endl;
+
+	//匿名对象调用
+	cout << myadd()(100, 100) << endl;
+}
+
+
+int main()
+{
+	test01();
+	test02();
+	system("pause");
+	return 0;
+}
