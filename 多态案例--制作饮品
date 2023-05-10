@@ -1,0 +1,80 @@
+#include<iostream>
+using namespace std;
+#include<string>
+
+class AbstractDrinking
+{
+public:
+	virtual void boil() = 0;
+	virtual void brew() = 0;
+	virtual void pourincup() = 0;
+	virtual void putsomething() = 0;
+	void makedrink()
+	{
+		boil();
+		brew();
+		pourincup();
+		putsomething();
+	}
+};
+
+class coffee :public AbstractDrinking
+{
+public:
+	virtual void boil()
+	{
+		cout << "煮水" << endl;
+	}
+	virtual void brew()
+	{
+		cout << "冲泡" << endl;
+	}
+	virtual void pourincup()
+	{
+		cout << "倒入杯中" << endl;
+	}
+	virtual void putsomething()
+	{
+		cout << "加入糖和牛奶" << endl;
+	}
+};
+
+class tea :public AbstractDrinking
+{
+public:
+	virtual void boil()
+	{
+		cout << "煮水" << endl;
+	}
+	virtual void brew()
+	{
+		cout << "冲泡" << endl;
+	}
+	virtual void pourincup()
+	{
+		cout << "倒入杯中" << endl;
+	}
+	virtual void putsomething()
+	{
+		cout << "加入柠檬" << endl;
+	}
+};
+
+//制作函数
+void dodrink(AbstractDrinking* abs)
+{
+	abs->makedrink();
+	delete abs;
+}
+
+void test01()
+{
+	dodrink(new coffee);	//abs->makedrink=new coffee;
+}
+
+int main()
+{
+	test01();
+	system("pause");
+	return 0;
+}
