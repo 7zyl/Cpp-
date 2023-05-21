@@ -1,0 +1,40 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        vector<int>nums;
+        nums.resize(m + n);
+        vector<int>::iterator it1 = nums1.begin();
+        vector<int>::iterator it2 = nums2.begin();
+        vector<int>::iterator end1 = nums1.begin() + m;
+        vector<int>::iterator end2 = nums2.begin() + n;
+        vector<int>::iterator it = nums.begin();
+        while (it1 != end1 && it2 != end2)
+        {
+            if (*it1 < *it2)
+            {
+                *it = *it1;
+                it++;
+                it1++;
+            }
+            else
+            {
+                *it = *it2;
+                it++;
+                it2++;
+            }
+        }
+        while (it1 != end1)
+        {
+            *it = *it1;
+            it++;
+            it1++;
+        }
+        while (it2 != end2)
+        {
+            *it = *it2;
+            it++;
+            it2++;
+        }
+        nums1 = nums;
+    }
+};
