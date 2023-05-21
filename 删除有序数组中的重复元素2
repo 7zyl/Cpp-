@@ -1,0 +1,25 @@
+//给你一个有序数组 nums ，请你 原地 删除重复出现的元素，使得出现次数超过两次的元素只出现两次 ，返回删除后数组的新长度。
+//数组是排序数组，这点很重要！！所以可以用双指针。
+//慢指针i是已经更新后数组的指针， 快指针j遍历原始数组，判断要不要某个元素.
+
+//两种情况添加数组：
+//1、nums[j]不等于nums[i]; 这是新的数字nums[j]出现，添加nums[j]
+//2、nums[j]不等于nums[i-1]; 这是允许有一个重复数字,即允许nums[j]等于nums[i]；添加nums[j]。
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=1;
+        if(nums.size()==1) return 1;
+        for(int j=2;j<nums.size();j++)          //前两个元素（0，1）无论如何都是要加入新数组的，所以j从2开始
+        {
+            if(nums[i]!=nums[j]||nums[i-1]!=nums[j])
+            {
+               i++;
+               nums[i]=nums[j];
+            }
+        }
+        return i+1;
+
+    }
+};
