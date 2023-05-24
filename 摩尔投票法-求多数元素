@@ -1,0 +1,28 @@
+//假设不同数字相互抵消，那么最后剩下的数字，就是我们要找的多数元素。
+// 1）当数组中的元素与假设的target不相等时，计数cnt减1，即模拟不同数字相互抵消；
+// 2）假设数组中的元素与假设的target相等时，计数cnt加1；
+// 3）当计数cnt等于0时，说明在当前遍历到的数组元素中，当前假设的target与其他数字相互抵消（个数相同），所以我们重新假设下一个遍历的数组元素为target,继续上面过程。
+// 4）当遍历完数组后，target为所求数字。
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+
+        int max=nums[0];
+        int count=0;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(count==0) max=nums[i];
+            if(nums[i]==max)
+            {
+                count++;
+            }
+            else
+            {
+                count--;
+            }
+        }
+        return max;
+    }
+
+};
